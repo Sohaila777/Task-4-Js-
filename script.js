@@ -1,48 +1,54 @@
-var products = ["item1", "item2", "item3"];
-var prices = [100, 200, 300];
+let products = ["Product 1", "Product 2", "Product 3", "Product 4"];
+let price = [100, 200, 300, 400];
 
-//  read
+// read
 
-function readProducts() {
-    products.forEach(function (item, i) {
-        console.log("item: " + " => " + (i+1))
-        console.log("price: " + " => " + prices[i])
+function displayProducts() {
+  console.clear();
+  if (products.length === 0) {
+    alert("No Products Yet!");
+  } else {
+    products.forEach(function (el, index) {
+      (console.log(index + 1 + " => " + "Product Name: " + el),
+        console.log("Product price: " + price[index]));
     });
+  }
 }
-readProducts();
 
 // add
 
-function addProduct() {
-    var product = prompt("enter product name");
-    var price = prompt("enter product price");
+function addNewProduct() {
+  let newProduct = prompt("enter new product name");
+  let newPrice = +prompt("enter new product price");
+  products.push(newProduct);
+  price.push(newPrice);
 
-   console.log(products.push(product));
-   console.log(prices.push(price));
+  displayProducts();
 }
 
-addProduct()
+// update
+
+function updateProduct() {
+  let productIndex = +prompt("enter product to update");
+  let productUpdated = prompt("enter new product name to update");
+  let productPriceUpdated = +prompt("enter new product price");
+
+  products.splice(productIndex - 1, 1, productUpdated);
+  price.splice(productIndex - 1, 1, productPriceUpdated);
+  displayProducts();
+}
 
 // delete
 
-function removepruduct() {
-    var index = +prompt("enter product number")
-
-    console.log(products.splice(index, 1));
-    console.log(prices.splice(index, 1));
+function deleteProduct() {
+  let productIndex = prompt("enter product to delete");
+  products.splice(productIndex - 1, 1);
+  displayProducts();
 }
 
-removepruduct()
+// reset
 
-// update 
-
-function updateproduct() {
-    var index = +prompt("enter product number");
-    var newProduct = +prompt("enter new product name");
-    var newPrice = +prompt("enter new product price");
-
-    console.log(products[index] = newProduct);
-    console.log(prices[index] = newPrice);
+function deleteAllProducts() {
+  products.splice(0, products.length);
+  displayProducts();
 }
-
-updateproduct();
